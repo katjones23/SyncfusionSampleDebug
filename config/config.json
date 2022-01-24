@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "sync-fusion-sample-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/syncFusionSample/SyncFusionSampleWebPart.js",
+          "manifest": "./src/webparts/syncFusionSample/SyncFusionSampleWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "SyncFusionSampleWebPartStrings": "lib/webparts/syncFusionSample/loc/{locale}.js"
+  }
+}

@@ -1,0 +1,134 @@
+.e-grid * {
+    font-size: 14px !important;
+}
+
+.e-grid .e-headercell {
+    background-color: #f6f6f6 !important;
+}
+
+.e-headercelldiv {
+    padding-right: 0px !important;
+    margin: 0px !important;
+}
+
+.e-grid .e-altrow {
+    background-color: #f6f6f6 !important;
+}
+
+.e-pagesizes {
+    display: none !important;
+}
+
+.ms-fontSize-24 {
+    font-size: 24px !important;
+}
+
+.templateRow:nth-child(even) {
+    background-color: #f6f6f6 !important;
+}
+
+.e-toolbar-left {
+    display: block !important;
+    cursor: default !important;
+}
+
+#ddFirstRow {
+    cursor: default !important;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+
+#ddFirstRow .e-multiselect {
+    margin-right: 7px;
+    cursor: default !important;
+}
+
+#ddFirstRow .e-input-group-icon {
+    display: none;
+}
+
+#ddFirstRow button {
+    margin-left: 7px;
+}
+
+#ddSecondRow {
+    margin-bottom: 7px;
+    cursor: default !important;
+    margin-left: 10px;
+}
+
+#ddSecondRow .e-multiselect {
+    margin-right: 7px;
+}
+
+.e-checkbox-wrapper .e-checkbox+.e-label {
+    margin-right: 33px !important;
+}
+
+#ddThirdRow {
+    cursor: default !important;
+    margin-bottom: 7px;
+    margin-left: 30px;
+    margin-top: 7px;
+}
+
+#ddThirdRow .e-input {
+    width: 250px !important;
+    margin-right: 7px;
+    cursor: default !important;
+}
+
+#searchBtns {
+    margin-left: 120px;
+}
+
+#searchBtns button {
+    margin-bottom: 4px;
+}
+
+#exportRow {
+    margin-left: 50px;
+    float: right;
+}
+
+#excelButton {
+    float: left;
+}
+
+.e-toolbar-right {
+    margin-left: 4px !important;
+}
+
+#gridPageTitle {
+    font-size: 24px !important;
+    cursor: default !important;
+    margin-bottom: 5px !important;
+    margin-left: 10px;
+}
+
+.e-rowcell {
+    vertical-align: top !important;
+}
+
+.e-icon-filter {
+    display: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 0px !important;
+    height: 0px !important;
+}
+
+.e-sortfilterdiv {
+    /* MOVE SORT ICON OVER TO WHERE FITLER ICON WAS */
+    margin-right: 0 !important;
+}
+
+.e-close-hooker {
+    /* HIDE GRID FILTER ICON */
+    display: none !important;
+}
+
+.e-multi-select-wrapper {
+    padding-right: 0 !important; /* REMOVED RIGH DROPDOWN FILTER GAP */
+}

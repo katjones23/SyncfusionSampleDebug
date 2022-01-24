@@ -1,0 +1,13 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "isCreatingSolution": true,
+    "environment": "spo",
+    "whichFolder": "subdir",
+    "version": "1.12.1",
+    "libraryName": "sync-fusion-sample",
+    "libraryId": "4821f3a8-7900-43e2-9fe5-457bd5cec264",
+    "packageManager": "npm",
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
