@@ -4,7 +4,7 @@ import { ISyncFusionSampleStates } from './ISyncFusionSampleStates';
 import { iconStyles, cssFilterDropDown, cssButtonMargin, siteTheme, cssLinkButton } from './Styles';
 import "./sfstyles.css";
 
-import { Grid, GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Inject, Filter, Toolbar, ColumnChooser, ExcelExport, ExcelExportProperties, Page, RowSelectEventArgs } from '@syncfusion/ej2-react-grids';
+import { Grid, GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, Inject, Filter, Toolbar, ColumnChooser, ExcelExport, ExcelExportProperties, RowSelectEventArgs } from '@syncfusion/ej2-react-grids';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
 import { MultiSelect, MultiSelectComponent, CheckBoxSelection } from '@syncfusion/ej2-react-dropdowns';
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
@@ -14,8 +14,13 @@ import "@syncfusion/ej2-fabric-theme/styles/fabric.css";
 import { Icon } from '@fluentui/react';
 import { Persona } from 'office-ui-fabric-react/lib/Persona';
 import { sampleData } from './data';
+import { mergeStyles } from 'office-ui-fabric-react/lib/Styling';
+import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { Link } from 'office-ui-fabric-react/lib/Link';
 
 enableRipple(true);
+
+const cssPanelPadding = mergeStyles({ marginBottom: '4px' });
 
 export default class SyncFusionSample extends React.Component<ISyncFusionSampleProps, ISyncFusionSampleStates> {
   public grid: Grid | null;
@@ -51,7 +56,7 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
         colArrayFilterPractice: null,
         colArrayFilterIndustry: null,
       },
-      officeLinks: null
+      blnPanelOpen: false
     };
   }
 
@@ -172,8 +177,8 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
   private gridRowTemplate(props) {
     const builtRow = [];
 
-    builtRow.push(<td className={"e-rowcell"}><Persona {...props["PersonaObj"]} hidePersonaDetails /></td>);
-    builtRow.push(<td className={"e-rowcell"}>{props["Name"]}</td>);
+    builtRow.push(<td className={"e-rowcell"}><Link onClick={() => this.OpenProfilePanel()}><Persona {...props["PersonaObj"]} hidePersonaDetails /></Link></td>);
+    builtRow.push(<td className={"e-rowcell"}><Link onClick={() => this.OpenProfilePanel()}>{props["Name"]}</Link></td>);
 
     builtRow.push(
       <td className={"e-rowcell"} style={{ textAlign: "center" }}>
@@ -227,6 +232,12 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
     );
   }
 
+  public OpenProfilePanel() {
+    this.setState({
+      blnPanelOpen: true
+    });
+  }
+
   private toolbarFiltersTemplate() {
     function btnClearClick(): void {
       this.multiFilterRole.value = [];
@@ -245,14 +256,11 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
       this.multiFilterOffice.dataSource = this.state.filters.colArrayFilterOffice;
       this.multiFilterPractice.dataSource = this.state.filters.colArrayFilterPractice;
       this.multiFilterIndustry.dataSource = this.state.filters.colArrayFilterIndustry;
-
-      this.grid.pageSettings.currentPage = 1;
     }
 
     function btnClearSearchClick() {
       this.txtSearch.value = "";
       this.grid.search("");
-      this.grid.pageSettings.currentPage = 1;
     }
 
     function btnSearchClick() {
@@ -955,13 +963,6 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
   }
 
   public gridHandleRefresh = (args) => {
-    if (args.requestType === "paging") {
-      if (this.grid) {
-        this.grid.selectionModule.selectRow(0);
-        this.grid.selectionModule.clearSelection();
-      }
-    }
-
     if (args["name"] == "actionComplete" && args["action"] != undefined) {
       if (args["action"] == "filter") {
         switch (args["currentFilteringColumn"]) {
@@ -1148,8 +1149,6 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
             allowTextWrap={true}
             showColumnChooser={true}
             rowTemplate={this.gridRowTemplate.bind(this)}
-            allowPaging={true}
-            pageSettings={{ pageSize: 15 }}
             rowSelected={this.rowSelected}
           >
             <ColumnsDirective>
@@ -1231,8 +1230,19 @@ export default class SyncFusionSample extends React.Component<ISyncFusionSampleP
                 width="0px"
               />
             </ColumnsDirective>
-            <Inject services={[Filter, Resize, Sort, Toolbar, ColumnChooser, ExcelExport, Page]} />
+            <Inject services={[Filter, Resize, Sort, Toolbar, ColumnChooser, ExcelExport]} />
           </GridComponent>
+          <Panel
+            isLightDismiss
+            onLightDismissClick={() => { this.setState({ blnPanelOpen: false }); }}
+            headerText="DEMO PANEL"
+            isOpen={this.state.blnPanelOpen}
+            onDismiss={(ev?: React.SyntheticEvent<HTMLElement, Event>) => { this.setState({ blnPanelOpen: false }); }}
+            closeButtonAriaLabel="Close"
+            type={PanelType.medium}
+          >
+            <div>This is a demo.</div>
+          </Panel>
         </>
       );
     }

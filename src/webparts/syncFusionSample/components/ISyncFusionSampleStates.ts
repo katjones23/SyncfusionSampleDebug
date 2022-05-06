@@ -10,5 +10,5 @@ export interface ISyncFusionSampleStates {
         colArrayFilterPractice: any;
         colArrayFilterIndustry: any;
     };
-    officeLinks: any;
+    blnPanelOpen: boolean;
 }
